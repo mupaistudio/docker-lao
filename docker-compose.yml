@@ -31,6 +31,8 @@ services:
       - dbnet
       - solrnet
       - redisnet
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
     env_file:
       - .env
     depends_on:
@@ -52,6 +54,8 @@ services:
     networks:
       - ckannet
       - dbnet
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
     image: ckan/ckan-base-datapusher:${DATAPUSHER_VERSION}
     restart: unless-stopped
     healthcheck:
