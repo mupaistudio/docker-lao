@@ -3,8 +3,15 @@ FROM ckan/ckan-base:2.10.4
 # Install any extensions needed by your CKAN instance
 # See Dockerfile.dev for more details and examples
 
+# Install harvest (git ref: bf849f177cf437652944d7696fbb219cbe2d52aa)
+RUN pip install -e 'git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest' && \
+    pip install -r ${APP_DIR}/src/ckanext-harvest/requirements.txt
+
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
+
+# Copy the supervisor configuration for harvesting
+COPY setup/ckan_harvesting.conf /etc/supervisord.d/ckan_harvesting.conf
 
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)
