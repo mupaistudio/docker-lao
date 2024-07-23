@@ -12,6 +12,9 @@ RUN pip install -e 'git+https://github.com/ckan/ckanext-dcat.git#egg=ckanext-dca
 # Install scheming (git ref: 27035f4d5b3722c2bc64d39b6c2b1d76c9883636)
 RUN pip install -e "git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming"
 
+# Install pdfview (git ref: 95fe59f0d63bb076a9c9b0ffff5a64c0524d5509)
+RUN pip install -e "git+https://github.com/ckan/ckanext-pdfview.git@master#egg=ckanext-pdfview"
+
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
