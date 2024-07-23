@@ -16,6 +16,8 @@ RUN pip install -e "git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext
 RUN pip install -e "git+https://github.com/ckan/ckanext-pdfview.git@master#egg=ckanext-pdfview"
 # Install dataexplorer-react (git ref: d8f49dd0f920e34a7d3437be454f20fa5f974587)
 RUN pip install -e "git+https://github.com/datopian/ckanext-dataexplorer-react.git@master#egg=ckanext-dataexplorer-react"
+# Install geoview (git ref: 7c85f8bccfb1c936848463054885b5473ecfa343)
+RUN pip install -e "git+https://github.com/ckan/ckanext-geoview.git@master#egg=ckanext-geoview"
 # Install visualize (forked)
 RUN pip install -e "git+https://github.com/sj-hyun1/ckanext-visualize.git@master#egg=ckanext-visualize" && \
     pip install -r ${APP_DIR}/src/ckanext-visualize/requirements.txt
@@ -34,6 +36,9 @@ COPY setup/plugin.py.override ${APP_DIR}/src/ckanext-scheming/ckanext/scheming/p
 
 # Override datastore allowed_functions.txt for allowing 'over' function
 COPY setup/allowed_functions.txt.override ${APP_DIR}/src/ckan/ckanext/datastore/allowed_functions.txt
+
+# Override geoview webassets.yml
+COPY setup/webassets.yml.override ${APP_DIR}/src/ckanext-geoview/ckanext/geoview/public/webassets.yml
 
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)
