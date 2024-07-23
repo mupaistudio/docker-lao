@@ -14,6 +14,9 @@ RUN pip install -e "git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext
 
 # Install pdfview (git ref: 95fe59f0d63bb076a9c9b0ffff5a64c0524d5509)
 RUN pip install -e "git+https://github.com/ckan/ckanext-pdfview.git@master#egg=ckanext-pdfview"
+# Install visualize (forked)
+RUN pip install -e "git+https://github.com/sj-hyun1/ckanext-visualize.git@master#egg=ckanext-visualize" && \
+    pip install -r ${APP_DIR}/src/ckanext-visualize/requirements.txt
 
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
