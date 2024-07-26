@@ -19,7 +19,7 @@ RUN pip install -e "git+https://github.com/datopian/ckanext-dataexplorer-react.g
 # Install geoview (git ref: 7c85f8bccfb1c936848463054885b5473ecfa343)
 RUN pip install -e "git+https://github.com/ckan/ckanext-geoview.git@master#egg=ckanext-geoview"
 # Install visualize (forked)
-RUN pip install -e "git+https://github.com/sj-hyun1/ckanext-visualize.git@master#egg=ckanext-visualize" && \
+RUN pip install -e "git+https://github.com/2024-Laos-CKAN/ckanext-visualize.git@master#egg=ckanext-visualize" && \
     pip install -r ${APP_DIR}/src/ckanext-visualize/requirements.txt
 
 # Install report (git ref: 3588577f46d17e5f6ef163bb984d0e7016daef71)
