@@ -1,0 +1,12 @@
+{% ckan_extends %}
+
+{% block resource_additional_information_inner %}
+    {# Try and inherit from archiver's resource_read #}
+  {{ super() }}
+
+  {{ h.archiver_is_resource_broken_html(c.resource) }}
+  <br>
+  {{ h.archiver_is_resource_cached_html(c.resource) }}
+  <br>
+
+{% endblock %}

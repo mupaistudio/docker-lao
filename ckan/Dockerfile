@@ -22,8 +22,21 @@ RUN pip install -e "git+https://github.com/ckan/ckanext-geoview.git@master#egg=c
 RUN pip install -e "git+https://github.com/sj-hyun1/ckanext-visualize.git@master#egg=ckanext-visualize" && \
     pip install -r ${APP_DIR}/src/ckanext-visualize/requirements.txt
 
+# Install report (git ref: 3588577f46d17e5f6ef163bb984d0e7016daef71)
+RUN pip install -e "git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report" && \
+    pip install -r ${APP_DIR}/src/ckanext-report/requirements.txt
+# Install archive (git ref: cbfadf9fbf10405958fdef9f77a7faedc05aa20b)
+RUN pip install -e "git+http://github.com/ckan/ckanext-archiver.git@master#egg=ckanext-archiver" && \
+    pip install -r ${APP_DIR}/src/ckanext-archiver/requirements.txt
+# Install qa (forked, git ref: addbd848a3db379aaf5c15ae655529b53fe73a07)
+RUN pip install -e "git+https://github.com/qld-gov-au/ckanext-qa.git@master#egg=ckanext-qa" && \
+    pip install -r ${APP_DIR}/src/ckanext-qa/requirements.txt
+
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
+
+# Copy the supervisor configuration for running ckan background job worker
+COPY setup/ckan_worker.conf /etc/supervisord.d/ckan_worker.conf
 
 # Copy the supervisor configuration for harvesting
 COPY setup/ckan_harvesting.conf /etc/supervisord.d/ckan_harvesting.conf
@@ -34,11 +47,24 @@ COPY setup/model_dictize.py.override ${APP_DIR}/src/ckan/ckan/lib/dictization/mo
 # Override scheming plugins.py
 COPY setup/plugin.py.override ${APP_DIR}/src/ckanext-scheming/ckanext/scheming/plugins.py
 
+# Override qa resource_read.html
+RUN rm -rf ${APP_DIR}/src/ckanext-qa/ckanext/qa/templates/package
+RUN mkdir -p ${APP_DIR}/src/ckanext-qa/ckanext/qa/templates/scheming/package
+COPY setup/resource_read.html.qa.override ${APP_DIR}/src/ckanext-qa/ckanext/qa/templates/scheming/package/resource_read.html
+
+# Override archiver resource_read.html
+RUN rm -rf ${APP_DIR}/src/ckanext-archiver/ckanext/archiver/templates/package
+RUN mkdir -p ${APP_DIR}/src/ckanext-archiver/ckanext/archiver/templates/scheming/package
+COPY setup/resource_read.html.archiver.override ${APP_DIR}/src/ckanext-archiver/ckanext/archiver/templates/scheming/package/resource_read.html
+
 # Override datastore allowed_functions.txt for allowing 'over' function
 COPY setup/allowed_functions.txt.override ${APP_DIR}/src/ckan/ckanext/datastore/allowed_functions.txt
 
 # Override geoview webassets.yml
 COPY setup/webassets.yml.override ${APP_DIR}/src/ckanext-geoview/ckanext/geoview/public/webassets.yml
+
+# Override archiver tasks.py
+COPY setup/tasks.py.override ${APP_DIR}/src/ckanext-archiver/ckanext/archiver/tasks.py
 
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)

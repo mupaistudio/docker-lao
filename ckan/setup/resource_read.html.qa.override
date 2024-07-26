@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{% block resource_additional_information_inner %}
+    {# Try and inherit from archiver's resource_read #}
+  {{ super() }}
+  
+  {{ h.qa_openness_stars_resource_html(c.resource) }}
+  <br>
+
+{% endblock %}
