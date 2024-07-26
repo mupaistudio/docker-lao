@@ -26,7 +26,7 @@ RUN pip install -e "git+https://github.com/2024-Laos-CKAN/ckanext-visualize.git@
 RUN pip install -e "git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report" && \
     pip install -r ${APP_DIR}/src/ckanext-report/requirements.txt
 # Install archive (git ref: cbfadf9fbf10405958fdef9f77a7faedc05aa20b)
-RUN pip install -e "git+http://github.com/ckan/ckanext-archiver.git@master#egg=ckanext-archiver" && \
+RUN pip install -e "git+https://github.com/ckan/ckanext-archiver.git@master#egg=ckanext-archiver" && \
     pip install -r ${APP_DIR}/src/ckanext-archiver/requirements.txt
 # Install qa (forked, git ref: addbd848a3db379aaf5c15ae655529b53fe73a07)
 RUN pip install -e "git+https://github.com/qld-gov-au/ckanext-qa.git@master#egg=ckanext-qa" && \
