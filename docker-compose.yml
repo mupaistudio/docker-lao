@@ -53,8 +53,6 @@ services:
       - ckannet
       - dbnet
     image: ckan/ckan-base-datapusher:${DATAPUSHER_VERSION}
-    environment:
-      - DATAPUSHER_MAX_CONTENT_LENGTH=256000000
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8800"]
