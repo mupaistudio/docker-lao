@@ -4,13 +4,13 @@ FROM ckan/ckan-base:2.10.4
 # See Dockerfile.dev for more details and examples
 
 # Install harvest (git ref: bf849f177cf437652944d7696fbb219cbe2d52aa)
-RUN pip install -e 'git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest' && \
+RUN pip install -e "git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest" && \
     pip install -r ${APP_DIR}/src/ckanext-harvest/requirements.txt
 # Install dcat (git ref: 51d651315ff2ff594ebd6eb1d658bc7e9553310c)
-RUN pip install -e 'git+https://github.com/ckan/ckanext-dcat.git#egg=ckanext-dcat' && \
+RUN pip install -e "git+https://github.com/ckan/ckanext-dcat.git@master#egg=ckanext-dcat" && \
     pip install -r ${APP_DIR}/src/ckanext-dcat/requirements.txt
 # Install scheming (git ref: 27035f4d5b3722c2bc64d39b6c2b1d76c9883636)
-RUN pip install -e "git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming"
+RUN pip install -e "git+https://github.com/ckan/ckanext-scheming.git@master#egg=ckanext-scheming"
 
 # Install pdfview (git ref: 95fe59f0d63bb076a9c9b0ffff5a64c0524d5509)
 RUN pip install -e "git+https://github.com/ckan/ckanext-pdfview.git@master#egg=ckanext-pdfview"
