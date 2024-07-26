@@ -4,6 +4,7 @@ volumes:
   solr_data:
   pip_cache:
   site_packages:
+  resource_cache:
 
 services:
 
@@ -17,6 +18,8 @@ services:
     depends_on:
       ckan:
         condition: service_healthy
+    volumes:
+      - resource_cache:/var/www/resource_cache
     ports:
       - "0.0.0.0:${NGINX_PORT_HOST}:${NGINX_PORT}"
     
@@ -44,6 +47,7 @@ services:
       - ckan_storage:/var/lib/ckan
       - pip_cache:/root/.cache/pip
       - site_packages:/usr/lib/python3.10/site-packages
+      - resource_cache:/var/www/resource_cache
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:5000"]

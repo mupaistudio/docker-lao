@@ -32,6 +32,10 @@ RUN pip install -e "git+https://github.com/ckan/ckanext-archiver.git@master#egg=
 RUN pip install -e "git+https://github.com/qld-gov-au/ckanext-qa.git@master#egg=ckanext-qa" && \
     pip install -r ${APP_DIR}/src/ckanext-qa/requirements.txt
 
+# Create directory for archiving resources
+RUN mkdir -p /var/www/resource_cache && \
+    chown -R ckan:ckan /var/www/resource_cache
+
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
