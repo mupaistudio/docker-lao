@@ -48,6 +48,9 @@ COPY setup/ckan_harvesting.conf /etc/supervisord.d/ckan_harvesting.conf
 # Override ckan model_dictize.py
 COPY setup/model_dictize.py.override ${APP_DIR}/src/ckan/ckan/lib/dictization/model_dictize.py
 
+# Override ckan validators.py
+COPY setup/validators.py.override ${APP_DIR}/src/ckan/ckan/logic/validators.py
+
 # Override scheming plugins.py
 COPY setup/plugin.py.override ${APP_DIR}/src/ckanext-scheming/ckanext/scheming/plugins.py
 
