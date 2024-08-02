@@ -21,7 +21,8 @@ services:
     volumes:
       - resource_cache:/var/www/resource_cache
     ports:
-      - "0.0.0.0:${NGINX_PORT_HOST}:${NGINX_PORT}"
+      # - "0.0.0.0:${NGINX_PORT_HOST}:${NGINX_PORT}"
+      - "0.0.0.0:${NGINX_SSLPORT_HOST}:${NGINX_SSLPORT}"
     
   ckan:
     build:
