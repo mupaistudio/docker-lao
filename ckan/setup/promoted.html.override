@@ -1,0 +1,31 @@
+{% set intro = g.site_intro_text %}
+
+<div class="module-promotion card box">
+  <div>
+    {% if intro %}
+      {{ h.render_markdown(intro) }}
+    {% else %}
+      <h1 class="page-heading">{{ _("Welcome to Lao PDR CKAN") }}</h1>
+      <p>
+        {% trans %}ສູນບໍລິຫານລັດດິຈິຕອນ Digital-Government Center
+        {% endtrans %}
+      </p>
+    {% endif %}
+  </div>
+
+  {% block home_image %}
+    <section class="featured media-overlay hidden-xs">
+      {% block home_image_content %}
+      <a class="media-image" href="https://www.facebook.com/Dgov.MTC/" style="
+      width: 80%;
+      height: 80%;
+      overflow: hidden;
+      margin-left: auto;
+      margin-right: auto;
+      ">
+            <img class="img-fluid" src="/base/images/dg_logo.jpeg" alt="Placeholder">
+      </a>
+      {% endblock %}
+    </section>
+  {% endblock %}
+</div>

@@ -73,6 +73,11 @@ COPY setup/webassets.yml.override ${APP_DIR}/src/ckanext-geoview/ckanext/geoview
 # Override archiver tasks.py
 COPY setup/tasks.py.override ${APP_DIR}/src/ckanext-archiver/ckanext/archiver/tasks.py
 
+# Add dg_logo.jpeg
+COPY setup/dg_logo.jpeg ${APP_DIR}/src/ckan/ckan/public/base/images/dg_logo.jpeg
+# Override ckan promoted.html
+COPY setup/promoted.html.override ${APP_DIR}/src/ckan/ckan/templates/home/snippets/promoted.html
+
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)
 COPY patches ${APP_DIR}/patches
