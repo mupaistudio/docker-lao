@@ -77,6 +77,9 @@ COPY setup/tasks.py.override ${APP_DIR}/src/ckanext-archiver/ckanext/archiver/ta
 COPY setup/dgc_logo.jpeg ${APP_DIR}/src/ckan/ckan/public/base/images/dgc_logo.jpeg
 # Override ckan promoted.html
 COPY setup/promoted.html.override ${APP_DIR}/src/ckan/ckan/templates/home/snippets/promoted.html
+# Override ckan ckan.ico
+COPY setup/ckan.ico ${APP_DIR}/src/ckan/ckan/public/base/images/ckan.ico
+
 
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)
