@@ -54,6 +54,9 @@ COPY setup/validators.py.override ${APP_DIR}/src/ckan/ckan/logic/validators.py
 # Override scheming plugins.py
 COPY setup/plugin.py.override ${APP_DIR}/src/ckanext-scheming/ckanext/scheming/plugins.py
 
+# Override scheming resource_read.html
+COPY setup/resource_read.html.scheming.override ${APP_DIR}/src/ckanext-scheming/ckanext/scheming/templates/scheming/package/resource_read.html
+
 # Override qa resource_read.html
 RUN rm -rf ${APP_DIR}/src/ckanext-qa/ckanext/qa/templates/package
 RUN mkdir -p ${APP_DIR}/src/ckanext-qa/ckanext/qa/templates/scheming/package
