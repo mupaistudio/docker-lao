@@ -1,10 +1,22 @@
 volumes:
   ckan_storage:
+    external: true
+    name: ckan-docker_ckan_storage
   pg_data:
+    external: true
+    name: ckan-docker_pg_data
   solr_data:
+    external: true
+    name: ckan-docker_solr_data
   pip_cache:
+    external: true
+    name: ckan-docker_pip_cache
   site_packages:
+    external: true
+    name: ckan-docker_site_packages
   resource_cache:
+    external: true
+    name: ckan-docker_resource_cache
 
 services:
 
@@ -19,6 +31,7 @@ services:
       ckan:
         condition: service_healthy
     volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
       - resource_cache:/var/www/resource_cache
     ports:
       - "0.0.0.0:${NGINX_PORT_HOST}:${NGINX_PORT}"
