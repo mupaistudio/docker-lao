@@ -3,8 +3,8 @@
 .vagrant
 
 # code & config
-_service-provider/*
-_solr/schema.xml
-_src/*
+!_service-provider/*
+!_solr/schema.xml
+!_src/*
 local/*
 .env
